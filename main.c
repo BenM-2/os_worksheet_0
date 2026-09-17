@@ -6,6 +6,7 @@ void T1(){
 
     // Inrement n by 1 
     *ptr_to_n += 1;
+    printf("%d\n",n);
 
 
 }
