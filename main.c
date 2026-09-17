@@ -56,14 +56,35 @@ void equal_tests()
     {
         EQ_PRINT(x, y, i);
     }
-    
+}
+
+int T4()
+{
+    FILE *fp = fopen("foo.txt", "r");
+    char ch;
+
+    if (fp == NULL)
+    {
+        printf("Unable to open file.");
+        return 1;
+    }
+
+    int x[1];
+    int sum = 0;
+    while (fscanf(fp,"%d",x)==1){
+        sum += x[0];
+    }
+    printf("%d\n",sum);
+    fclose(fp);
+    return 0;
 }
 
 int main(void)
 {
     // T1();
     // T2();
-    equal_tests();
+    // equal_tests();
+    T4();
 
     return 0;
 }
