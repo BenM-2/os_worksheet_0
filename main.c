@@ -71,17 +71,18 @@ int T4()
 
     int x[1];
     int sum = 0;
-    while (fscanf(fp,"%d",x)==1){
+    while (fscanf(fp, "%d", x) == 1)
+    {
         sum += x[0];
     }
-    printf("%d\n",sum);
+    printf("%d\n", sum);
     fclose(fp);
     return 0;
 }
 
 void swap(int *x, int *y)
 {
-    // Typecasting to an int 
+    // Typecasting to an int
     *x = *x ^ *y;
     *y = *x ^ *y;
     *x = *x ^ *y;
@@ -91,9 +92,32 @@ void swap_test()
 {
     int x = 5;
     int y = 10;
-    printf("x:%d,y:%d\n",x,y);
-    swap(&x,&y);
-    printf("x:%d,y:%d\n",x,y);
+    printf("x:%d,y:%d\n", x, y);
+    swap(&x, &y);
+    printf("x:%d,y:%d\n", x, y);
+}
+
+void print_array(int *arr, int width, int height)
+{
+    for (int r = 0; r < height; r++)
+    {
+        for (int c = 0; c < width; c++)
+        {
+            int index = (r * width) + c;
+            printf("%d,", arr[index]);
+        }
+        printf("\n");
+    }
+}
+
+void print_test()
+{
+    int arr[] = {
+        1, 2, 3, 4,
+        5, 6, 7, 8,
+        9, 10, 11, 12};
+
+    print_array(arr, 4, 3);
 }
 
 int main(void)
@@ -103,6 +127,7 @@ int main(void)
     // equal_tests();
     // T4();
     // swap_test();
+    print_test();
 
     return 0;
 }
