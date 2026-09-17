@@ -79,12 +79,30 @@ int T4()
     return 0;
 }
 
+void swap(int *x, int *y)
+{
+    // Typecasting to an int 
+    *x = *x ^ *y;
+    *y = *x ^ *y;
+    *x = *x ^ *y;
+}
+
+void swap_test()
+{
+    int x = 5;
+    int y = 10;
+    printf("x:%d,y:%d\n",x,y);
+    swap(&x,&y);
+    printf("x:%d,y:%d\n",x,y);
+}
+
 int main(void)
 {
     // T1();
     // T2();
     // equal_tests();
-    T4();
+    // T4();
+    // swap_test();
 
     return 0;
 }
