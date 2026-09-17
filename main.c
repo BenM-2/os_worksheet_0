@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdbool.h>
 
 void T1()
 {
@@ -16,14 +17,53 @@ void T2()
     int *ptr_to_arr = arr;
     for (int i = 0; i < 3; i++)
     {
-        printf("Index: %d,Value: %d,Ptr Value: %p\n",i,*ptr_to_arr,(void *)ptr_to_arr);
+        printf("Index: %d,Value: %d,Ptr Value: %p\n", i, *ptr_to_arr, (void *)ptr_to_arr);
         ptr_to_arr++;
     }
 }
 
+bool equal(int *x, int *y, int length)
+{
+    // Take pointers
+    // int  = 4 bytes -> read slice by casting to unsigned char
+    if (length > sizeof(int))
+        length = 4;
+
+    unsigned char *c1 = (unsigned char *)x;
+    unsigned char *c2 = (unsigned char *)y;
+
+    for (int i = 0; i < length; i++)
+    {
+        if (!(*c1 == *c2))
+        {
+            return false;
+        }
+        c1++;
+        c2++;
+    }
+
+    return true;
+}
+
+#define EQ_PRINT(x, y, l) printf("%d and %d equal=%s\n", x, y, equal(&x, &y, l) ? "true" : "false")
+
+void equal_tests()
+{
+    int x = -1;              // 0xFF FF FF FF (signed)
+    unsigned int y = 0xFFFF; // 0x00 00 FF FF (unsigned)
+
+    for (int i = 0; i < 4; i++)
+    {
+        EQ_PRINT(x, y, i);
+    }
+    
+}
+
 int main(void)
 {
-    T1();
-    T2();
+    // T1();
+    // T2();
+    equal_tests();
+
     return 0;
 }
