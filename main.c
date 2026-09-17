@@ -1,5 +1,7 @@
 #include <stdio.h>
 #include <stdbool.h>
+#include <stdlib.h>
+#include "string.h"
 
 void T1()
 {
@@ -80,13 +82,13 @@ int T4()
     return 0;
 }
 
-// True swap But done through a macro to avoid loss of data of the size of data due to void * 
-// #define swap_val(x,y) swap_values(&(x),&(y),sizeof((x))) 
+// True swap But done through a macro to avoid loss of data of the size of data due to void *
+// #define swap_val(x,y) swap_values(&(x),&(y),sizeof((x)))
 // void swap_values(void *x,void *y, int length){
 //     unsigned char tmp[length];   // max object size allowed
 //     memcpy(tmp, x, length);
 //     memcpy(x, y, length);
-//     memcpy(y, tmp, length);  
+//     memcpy(y, tmp, length);
 // }
 
 void swap(int *x, int *y)
@@ -129,6 +131,90 @@ void print_test()
     print_array(arr, 4, 3);
 }
 
+// Tic tac toe
+typedef enum
+{
+    EMPTY = 0,
+    ZERO,
+    CROSS,
+} TTT_t;
+
+char get_player_char(TTT_t const type)
+{
+    switch (type)
+    {
+    case EMPTY:
+        return '_';
+    case ZERO:
+        return 'O';
+    case CROSS:
+        return 'X';
+    }
+}
+
+void print_board(const TTT_t *const arr, const size_t grid_size)
+{
+    for (int r = 0; r < grid_size; r++)
+    {
+        for (int c = 0; c < grid_size; c++)
+        {
+            int index = (r * grid_size) + c;
+            char x = get_player_char(arr[index]);
+            printf("%c,", x);
+        }
+        printf("\n");
+    }
+}
+
+void reset_board(TTT_t *arr, size_t length)
+{
+    memset(arr, EMPTY, length);
+}
+
+#define ROW_X_wincheck(arr, row, width)                     \
+    ((arr)[(row) * (width)] != EMPTY && \
+    (arr)[(row) * (width)] == (arr)[1 + (row) * (width)] && \
+    (arr)[1 + (row) * (width)] == (arr)[2 + (row) * (width)])
+
+TTT_t checkwin(const TTT_t *const arr, const int grid_size)
+{
+    for (int i = 0; i < grid_size; i++)
+    {
+        if (ROW_X_wincheck(arr, i, grid_size))
+        {
+            return arr[i];
+        }
+    }
+    return EMPTY;
+}
+
+void TicTacToe(int grid_size)
+{
+    // Local vars
+    TTT_t win = EMPTY;
+    bool p1_turn = true;
+    // Initalise board
+    TTT_t *arr = malloc(sizeof(TTT_t) * grid_size * grid_size);
+    reset_board(arr, sizeof(TTT_t) * grid_size * grid_size);
+    // Play in loop
+    while (win == EMPTY)
+    {
+        // Print board
+        print_board(arr, grid_size);
+
+        // Take input
+        int player_input = 0;
+        printf("Enter Position: ");
+        scanf("%d", &player_input);
+        arr[player_input] = p1_turn ? ZERO : CROSS;
+        p1_turn = !p1_turn;
+        // Checkwin
+        win = checkwin(arr, grid_size);
+    }
+    // Print Winner
+    printf("WINNER %c\n", get_player_char(win));
+}
+
 int main(void)
 {
     // T1();
@@ -136,7 +222,8 @@ int main(void)
     // equal_tests();
     // T4();
     // swap_test();
-    print_test();
+    // print_test();
+    TicTacToe(3);
 
     return 0;
 }
