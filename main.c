@@ -80,6 +80,15 @@ int T4()
     return 0;
 }
 
+// True swap But done through a macro to avoid loss of data of the size of data due to void * 
+// #define swap_val(x,y) swap_values(&(x),&(y),sizeof((x))) 
+// void swap_values(void *x,void *y, int length){
+//     unsigned char tmp[length];   // max object size allowed
+//     memcpy(tmp, x, length);
+//     memcpy(x, y, length);
+//     memcpy(y, tmp, length);  
+// }
+
 void swap(int *x, int *y)
 {
     // Typecasting to an int
