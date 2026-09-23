@@ -9,6 +9,8 @@ int main(int argc, char *argv[])
         return 1;
     }
 
+    printf("Task 4: \n");
+
     FILE *fp = fopen(argv[1], "r");
 
     if (fp == NULL)

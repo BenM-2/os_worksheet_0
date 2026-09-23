@@ -73,6 +73,8 @@ int main(int argc,char * argv[])
         printf("Usage ./TTT grid_size\n");
         return 1;
     }
+
+    printf("Tic Tac Toe: \n");
     int grid_size = atoi(argv[1]);
 
     // Local vars
