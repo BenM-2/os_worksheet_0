@@ -32,21 +32,52 @@ To run task 4:
 ``` bash
 make task_4 && ./build/exec/task_4 foo.txt  
 ```
+### Overview
+Write a program that reads the following numbers from a file, and prints their sum.
 
+foo.txt
+``` 
+10
+20
+30
+40
+54
+```
 
 ## Task 5
 To run task 5: 
 ``` bash
 make task_5 && ./build/exec/task_5 
 ```
+#### Overview
+Implement a program that contains the swap function, and tests it works correclty. with the function signature 
+``` c
+void swap(void * x, void * y);
+```
+> [!NOTE]
+> with this function signature it is impossible to make a generic swap without length due to void * discarding type qualifier and hence type length full implementation can be done via macro as shown in comments in task_5.c 
 
+## Task 6
+To run task 6: 
+``` bash
+make task_6 && ./build/exec/task_6 
+```
+### Overview
+Implement a function to prints a 2D‑array, given a pointer to the array, and its corresponding
+width and height with teh function signature 
+``` c
+void print_array(int * arr, int width, int height);
+```
 
 ## Tic Tac Toe
 To run TTT: 
 ``` bash
 make TTT && ./build/exec/TTT 3  
 ```
-Grid Layout 
+### Overview 
+Implement Tic Tac Toe 
+
+### Grid Layout 
 ```
     0   1   2
     3   4   5

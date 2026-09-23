@@ -32,6 +32,10 @@ task_5: $(EXE_DIR)task_5
 $(EXE_DIR)task_5: $(SRC)task_5.c | dirs
 	gcc $(GCC_FLAGS) $(SRC)task_5.c -o $(EXE_DIR)task_5
 
+task_6: $(EXE_DIR)task_6
+$(EXE_DIR)task_6: $(SRC)task_6.c | dirs
+	gcc $(GCC_FLAGS) $(SRC)task_6.c -o $(EXE_DIR)task_6
+
 TTT: $(EXE_DIR)TTT
 $(EXE_DIR)TTT: $(SRC)tic_tac_toe.c | dirs
 	gcc $(GCC_FLAGS) $(SRC)tic_tac_toe.c -o $(EXE_DIR)TTT
