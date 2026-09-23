@@ -5,6 +5,9 @@ To run task 1:
 ``` bash
 make task_1 && ./build/exec/task_1 
 ```
+### Overview 
+Create a pointer to the local variable n called ptr_to_n, and use it to increase the value of
+n by one.Print the result.
 
 ## Task 2
 To run task 1: 
