@@ -20,7 +20,7 @@ bool equal(const void *const x, const  void *const y, size_t length)
     return true;
 }
 
-#define EQ_PRINT(x, y, l) printf("%d and %d equal=%s\n", x, y, equal(&x, &y, l) ? "true" : "false")
+#define EQ_PRINT(x, y, l) printf("%d and %d equal=%s at Byte = %d\n", (x), (y), equal(&(x), &(y), (l)) ? "true" : "false",(l)+1)
 
 void equal_tests()
 {
