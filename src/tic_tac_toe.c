@@ -55,11 +55,25 @@ void reset_board(TTT_t *arr, size_t length)
      (arr)[(col)] == (arr)[(col) + (width)] && \
      (arr)[(col) + (width)] == (arr)[(col) + (2) * (width)])
 
+#define Diag_0_T_8_wincheck(arr) \
+    ((arr)[0] != EMPTY &&        \
+     (arr)[0] == (arr)[4] &&     \
+     (arr)[4] == (arr)[8])
+
+#define Diag_6_T_2_wincheck(arr) \
+    ((arr)[2] != EMPTY &&        \
+     (arr)[2] == (arr)[4] &&     \
+     (arr)[4] == (arr)[6])
+
 TTT_t checkwin(const TTT_t *const arr, const int grid_size)
 {
     for (int i = 0; i < grid_size; i++)
     {
-        if (ROW_X_wincheck(arr, i, grid_size) || COL_X_wincheck(arr, i,grid_size))
+        if (ROW_X_wincheck(arr, i, grid_size) || COL_X_wincheck(arr, i, grid_size))
+        {
+            return arr[i];
+        }
+        if (Diag_0_T_8_wincheck(arr) || Diag_6_T_2_wincheck(arr))
         {
             return arr[i];
         }
@@ -67,9 +81,10 @@ TTT_t checkwin(const TTT_t *const arr, const int grid_size)
     return EMPTY;
 }
 
-int main(int argc,char * argv[])
+int main(int argc, char *argv[])
 {
-    if (argc != 2){
+    if (argc != 2)
+    {
         printf("Usage ./TTT grid_size\n");
         return 1;
     }
