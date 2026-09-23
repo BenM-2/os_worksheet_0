@@ -55,7 +55,7 @@ Implement a program that contains the swap function, and tests it works correclt
 void swap(void * x, void * y);
 ```
 > [!NOTE]
-> with this function signature it is impossible to make a generic swap without length due to void * discarding type qualifier and hence type length full implementation can be done via macro as shown in comments in task_5.c 
+> with this function signature it is impossible to make a generic swap without length due to void * discarding type qualifier and hence type length.A Full implementation can be done via a macro as shown in comments in task_5.c 
 
 ## Task 6
 To run task 6: 
